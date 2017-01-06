@@ -190,8 +190,13 @@ module.exports = function (grunt) {
         separator: ";"
       },
       qimeng_js: {
-        // src: ["dist/js/qimeng/qimeng-sidebar.js","dist/js/qimeng/qimeng-tabs.js"],
-        src: ["dist/js/qimeng/qimeng-*.js"],
+        src: [
+          "dist/js/qimeng/qimeng-extends.js",
+          "dist/js/qimeng/qimeng-transformMatrix.js",
+          "dist/js/qimeng/qimeng-utils.js",
+          "dist/js/qimeng/qimeng-sidebar.js",
+          "dist/js/qimeng/qimeng-tabs.js"
+        ],
         dest: "dist/js/qimeng-admin.js",
       },
     },

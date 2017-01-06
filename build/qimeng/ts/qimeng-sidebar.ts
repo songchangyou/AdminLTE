@@ -73,7 +73,7 @@ namespace qimeng{
             */
             this.$content.on("click",()=>{
                 if($("body").width() <= this.screenXSMax){
-                    var matrix:TransformMatrix = Utils.getTransform(this.$sidebar);
+                    var matrix:TransformMatrix = qimeng.Utils.getTransform(this.$sidebar);
                     if(matrix.x >= 0){
                         this.hideSidebar();
                     }
@@ -211,7 +211,7 @@ namespace qimeng{
                     sidebarX = 0;
                 }
             }
-            Utils.translate(this.$sidebar,sidebarX+"px",0);
+            qimeng.Utils.translate(this.$sidebar,sidebarX+"px",0);
         }
 
         

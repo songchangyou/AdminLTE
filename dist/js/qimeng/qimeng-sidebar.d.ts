@@ -1,4 +1,5 @@
 /// <reference types="jquery" />
+/// <reference types="jquery.slimscroll" />
 declare namespace qimeng {
     /**
      * 页面左侧导航

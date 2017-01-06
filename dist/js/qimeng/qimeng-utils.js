@@ -29,7 +29,7 @@ var qimeng;
             if (ystr && ystr.length > 0) {
                 y = parseInt(ystr, 10);
             }
-            return new qimeng.TransformMatrix(x, y);
+            return new TransformMatrix(x, y);
         };
         /**
          *

@@ -1,4 +1,115 @@
-var qimeng;
+//预先定义，不然生成的js会报qimeng is not defined
+var qimeng = {};
+/*对AdminTLE的扩展 */
+$(function () {
+    /* 加上拖动条后需要改动滚动条的颜色  */
+    if ($.AdminLTE.layout) {
+        var oldFun = $.AdminLTE.layout.fixSidebar;
+        $.AdminLTE.layout.fixSidebar = function () {
+            oldFun();
+            //Enable slimscroll for fixed layout
+            if ($.AdminLTE.options.sidebarSlimScroll) {
+                if (typeof $.fn.slimScroll != 'undefined') {
+                    //Destroy if it exists
+                    $(".sidebar").slimScroll({ destroy: true }).height("auto");
+                    //Add slimscroll
+                    $(".sidebar").slimScroll({
+                        height: ($(window).height() - $(".main-header").height()) + "px",
+                        // color: "rgba(0,0,0,0.2)",
+                        color: "black",
+                        size: "5px"
+                    });
+                }
+            }
+        };
+        if ($("body").hasClass("fixed")) {
+            $.AdminLTE.layout.fixSidebar();
+        }
+    }
+});
+//# sourceMappingURL=qimeng-extends.js.map;var qimeng;
+(function (qimeng) {
+    /**
+     * css中transform 使用的坐标
+     *
+     * @export
+     * @class TransformMatrix
+     */
+    var TransformMatrix = (function () {
+        /**
+         * Creates an instance of TransformMatrix.
+         *
+         * @param {number} x x坐标
+         * @param {number} y y坐标
+         *
+         * @memberOf TransformMatrix
+         */
+        function TransformMatrix(x, y) {
+            if (x === void 0) { x = 0; }
+            if (y === void 0) { y = 0; }
+            this.x = x;
+            this.y = y;
+        }
+        return TransformMatrix;
+    }());
+    qimeng.TransformMatrix = TransformMatrix;
+})(qimeng || (qimeng = {}));
+//# sourceMappingURL=qimeng-transformMatrix.js.map;var qimeng;
+(function (qimeng) {
+    var Utils = (function () {
+        function Utils() {
+        }
+        /**
+         * 获取css Transform
+         *
+         * @static
+         * @param {JQuery} $obj jquery对象
+         * @returns {TransformMatrix}
+         *
+         * @memberOf Utils
+         */
+        Utils.getTransform = function ($obj) {
+            var transformMatrix = $obj.css("-webkit-transform") ||
+                $obj.css("-moz-transform") ||
+                $obj.css("-ms-transform") ||
+                $obj.css("-o-transform") ||
+                $obj.css("transform");
+            var matrix = transformMatrix.replace(/[^0-9\-.,]/g, '').split(',');
+            var xstr = matrix[12] || matrix[4]; //translate x
+            var ystr = matrix[13] || matrix[5]; //translate y
+            var x = 0;
+            var y = 0;
+            if (xstr && xstr.length > 0) {
+                x = parseInt(xstr, 10);
+            }
+            if (ystr && ystr.length > 0) {
+                y = parseInt(ystr, 10);
+            }
+            return new TransformMatrix(x, y);
+        };
+        /**
+         *
+         * css3 translate
+         * @param {JQuery} $obj jquery对象
+         * @param {(number|string)} x x坐标
+         * @param {(number|string)} y y坐标
+         *
+         * @memberOf SideBar
+         */
+        Utils.translate = function ($obj, x, y) {
+            var css = {
+                "-webkit-transform": "translate(" + x + ", " + y + ")",
+                "-ms-transform": "translate(" + x + ", " + y + ")",
+                "-o-transform": "translate(" + x + ", " + y + ")",
+                "transform": "translate(" + x + ", " + y + ")"
+            };
+            $obj.css(css);
+        };
+        return Utils;
+    }());
+    qimeng.Utils = Utils;
+})(qimeng || (qimeng = {}));
+//# sourceMappingURL=qimeng-utils.js.map;var qimeng;
 (function (qimeng) {
     /**
      * 页面左侧导航
@@ -210,86 +321,4 @@ var qimeng;
 $(function () {
     var sidebar = new qimeng.SideBar();
 });
-//# sourceMappingURL=qimeng-sidebar.js.map;//# sourceMappingURL=qimeng-tabs.js.map;var qimeng;
-(function (qimeng) {
-    /**
-     * css中transform 使用的坐标
-     *
-     * @export
-     * @class TransformMatrix
-     */
-    var TransformMatrix = (function () {
-        /**
-         * Creates an instance of TransformMatrix.
-         *
-         * @param {number} x x坐标
-         * @param {number} y y坐标
-         *
-         * @memberOf TransformMatrix
-         */
-        function TransformMatrix(x, y) {
-            if (x === void 0) { x = 0; }
-            if (y === void 0) { y = 0; }
-            this.x = x;
-            this.y = y;
-        }
-        return TransformMatrix;
-    }());
-    qimeng.TransformMatrix = TransformMatrix;
-})(qimeng || (qimeng = {}));
-//# sourceMappingURL=qimeng-transformMatrix.js.map;var qimeng;
-(function (qimeng) {
-    var Utils = (function () {
-        function Utils() {
-        }
-        /**
-         * 获取css Transform
-         *
-         * @static
-         * @param {JQuery} $obj jquery对象
-         * @returns {TransformMatrix}
-         *
-         * @memberOf Utils
-         */
-        Utils.getTransform = function ($obj) {
-            var transformMatrix = $obj.css("-webkit-transform") ||
-                $obj.css("-moz-transform") ||
-                $obj.css("-ms-transform") ||
-                $obj.css("-o-transform") ||
-                $obj.css("transform");
-            var matrix = transformMatrix.replace(/[^0-9\-.,]/g, '').split(',');
-            var xstr = matrix[12] || matrix[4]; //translate x
-            var ystr = matrix[13] || matrix[5]; //translate y
-            var x = 0;
-            var y = 0;
-            if (xstr && xstr.length > 0) {
-                x = parseInt(xstr, 10);
-            }
-            if (ystr && ystr.length > 0) {
-                y = parseInt(ystr, 10);
-            }
-            return new qimeng.TransformMatrix(x, y);
-        };
-        /**
-         *
-         * css3 translate
-         * @param {JQuery} $obj jquery对象
-         * @param {(number|string)} x x坐标
-         * @param {(number|string)} y y坐标
-         *
-         * @memberOf SideBar
-         */
-        Utils.translate = function ($obj, x, y) {
-            var css = {
-                "-webkit-transform": "translate(" + x + ", " + y + ")",
-                "-ms-transform": "translate(" + x + ", " + y + ")",
-                "-o-transform": "translate(" + x + ", " + y + ")",
-                "transform": "translate(" + x + ", " + y + ")"
-            };
-            $obj.css(css);
-        };
-        return Utils;
-    }());
-    qimeng.Utils = Utils;
-})(qimeng || (qimeng = {}));
-//# sourceMappingURL=qimeng-utils.js.map
+//# sourceMappingURL=qimeng-sidebar.js.map;//# sourceMappingURL=qimeng-tabs.js.map
