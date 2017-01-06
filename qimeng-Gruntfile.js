@@ -6,8 +6,19 @@ module.exports = function (grunt) {
   grunt.initConfig({
     watch: {
       // If any .less file changes in directory "build/less/" run the "less"-task.
-      files: ["build/less/*.less", "build/less/skins/*.less", "dist/js/app.js"],
-      tasks: ["less", "uglify"]
+      AdminLTE:{
+
+        files: ["build/less/*.less", "build/less/skins/*.less","dist/js/app.js"],
+        tasks: ["less","uglify"]
+      },
+      qimeng_less:{
+        files: ["build/qimeng/less/*.less"],
+        tasks: ["less:qimeng_development","less:qimeng_production"]
+      },
+      qimeng_js:{
+        files: ["dist/js/qimeng/*.js"],
+        tasks: ["concat:qimeng_js","uglify:qimeng"]
+      }
     },
     // "less"-task configuration
     // This task will compile all less files upon saving to create both AdminLTE.css and AdminLTE.min.css
@@ -34,7 +45,7 @@ module.exports = function (grunt) {
           "dist/css/skins/skin-green-light.css": "build/less/skins/skin-green-light.less",
           "dist/css/skins/skin-red-light.css": "build/less/skins/skin-red-light.less",
           "dist/css/skins/skin-purple-light.css": "build/less/skins/skin-purple-light.less",
-          "dist/css/skins/_all-skins.css": "build/less/skins/_all-skins.less"
+          "dist/css/skins/_all-skins.css": "build/less/skins/_all-skins.less",
         }
       },
       // Production compresses version
@@ -59,7 +70,27 @@ module.exports = function (grunt) {
           "dist/css/skins/skin-green-light.min.css": "build/less/skins/skin-green-light.less",
           "dist/css/skins/skin-red-light.min.css": "build/less/skins/skin-red-light.less",
           "dist/css/skins/skin-purple-light.min.css": "build/less/skins/skin-purple-light.less",
-          "dist/css/skins/_all-skins.min.css": "build/less/skins/_all-skins.less"
+          "dist/css/skins/_all-skins.min.css": "build/less/skins/_all-skins.less",
+        }
+      },
+      // Development not compressed
+      qimeng_development: {
+        options: {
+          // Whether to compress or not
+          compress: false
+        },
+        files: {
+          "dist/css/qimeng-admin.css": "build/qimeng/less/qimeng-admin.less"
+        }
+      },
+      // Production compresses version
+      qimeng_production: {
+        options: {
+          // Whether to compress or not
+          compress: true
+        },
+        files: {
+          "dist/css/qimeng-admin.min.css": "build/qimeng/less/qimeng-admin.less"
         }
       }
     },
@@ -72,6 +103,11 @@ module.exports = function (grunt) {
       my_target: {
         files: {
           'dist/js/app.min.js': ['dist/js/app.js']
+        }
+      },
+      qimeng:{
+        files:{
+          "dist/js/qimeng-admin.min.js":["dist/js/qimeng-admin.js"]
         }
       }
     },
@@ -135,6 +171,31 @@ module.exports = function (grunt) {
       files: ['pages/**/*.html', '*.html']
     },
 
+    browserSync: {
+      bsFiles: {
+          src : '**'
+      },
+      options: {
+          server: {
+              baseDir: "./"
+          },
+          //默认首页
+          startPath: "/qimeng-index.html",
+          open: "external"
+      }
+    },
+
+    concat: {
+      options: {
+        separator: ";"
+      },
+      qimeng_js: {
+        // src: ["dist/js/qimeng/qimeng-sidebar.js","dist/js/qimeng/qimeng-tabs.js"],
+        src: ["dist/js/qimeng/qimeng-*.js"],
+        dest: "dist/js/qimeng-admin.js",
+      },
+    },
+
     // Delete images in build directory
     // After compressing the images in the build/img dir, there is no need
     // for them
@@ -163,6 +224,9 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-csslint');
   // Lint Bootstrap
   grunt.loadNpmTasks('grunt-bootlint');
+  //browsersync
+  grunt.loadNpmTasks('grunt-browser-sync');
+  grunt.loadNpmTasks('grunt-contrib-concat');
 
   // Linting task
   grunt.registerTask('lint', ['jshint', 'csslint', 'bootlint']);

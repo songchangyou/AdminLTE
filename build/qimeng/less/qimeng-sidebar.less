@@ -1,0 +1,92 @@
+/*拖动条*/
+.side-dragbar{
+  background-color:@side-dragbar-color;
+  position: absolute;
+  margin: 0;
+  left: @qimeng-sidebar-width - @side-dragbar-width;
+  height:90%;
+  width: @side-dragbar-width;
+  cursor: col-resize;
+  z-index: @side-dragbar-index;
+  @media (max-width: @screen-xs-max) {
+    // .translate(-@qimeng-sidebar-width, 0);
+    display: none;
+  }
+  .sidebar-collapse & {
+    @media (min-width: @screen-sm) {
+      // .translate(-@qimeng-sidebar-width, 0);
+      display: none;
+    }
+  }
+  .sidebar-open & {
+    @media (max-width: @screen-xs-max) {
+      // .translate(0, 0);
+      display: block;
+    }
+  }
+}
+/*滚动条拖动时鼠标位置的样式*/
+.dynamic-side-dragbar{
+  width:@side-dragbar-width;
+  background-color:@side-dragbar-color;
+  opacity:0.5;
+  position:absolute;
+  cursor: col-resize;
+  z-index:@side-dragbar-index
+}
+
+/*参考AdminLTE中main-sidebar的实现，响应式translate部分使用js控制*/
+.main-sidebar,
+.left-side {
+    width:@qimeng-sidebar-width;
+    @media (max-width: @screen-xs-max) {
+      .translate(-@qimeng-sidebar-width, 0);
+    }
+    .sidebar-collapse & {
+      @media (min-width: @screen-sm) {
+        .translate(-@qimeng-sidebar-width, 0);
+      }
+    }
+    .sidebar-open & {
+      @media (max-width: @screen-xs-max) {
+        .translate(0, 0);
+      }
+    }
+}
+
+//Open without slide over content
+.control-sidebar-open {
+  @media (min-width: @screen-sm) {
+    .content-wrapper,
+    .right-side,
+    .main-footer {
+      margin-right: @qimeng-sidebar-width;
+    }
+  }
+}
+
+/*
+ * Content Wrapper - contains the main content
+ * ```.right-side has been deprecated as of v2.0.0 in favor of .content-wrapper  ```
+ */
+.content-wrapper,
+.right-side,
+.main-footer {
+  margin-left: @qimeng-sidebar-width;
+  @media (max-width: @screen-xs-max) {
+    margin-left: 0;
+  }
+  //When opening the sidebar on large screens
+  .sidebar-collapse & {
+    @media (min-width: @screen-sm) {
+      margin-left: 0;
+    }
+  }
+  //When opening the sidebar on small screens
+  .sidebar-open & {
+    @media (max-width: @screen-xs-max) {
+      .translate(@qimeng-sidebar-width, 0);
+    }
+  }
+}
+

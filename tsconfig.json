@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "es5",
+        "noImplicitAny": false,
+        "sourceMap": true,
+        "declaration": true,
+        "typeRoots": [
+            "node_modules/@types"
+        ],
+        "outDir": "dist/js/qimeng"
+    },
+    "include": [
+        "build/qimeng/ts/*"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}
