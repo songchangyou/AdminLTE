@@ -1,123 +1,39 @@
-Introduction
-============
+# 介绍
+    基于AdminLTE修改，加上左侧导航栏可拖动改变大小、tabs等功能。
 
-![Bower version](https://img.shields.io/bower/v/adminlte.svg)
-[![npm version](https://img.shields.io/npm/v/admin-lte.svg)](https://www.npmjs.com/package/admin-lte)
-[![Packagist](https://img.shields.io/packagist/v/almasaeed2010/adminlte.svg)](https://packagist.org/packages/almasaeed2010/adminlte)
-
-**AdminLTE** -- is a fully responsive admin template. Based on **[Bootstrap 3](https://github.com/twbs/bootstrap)** framework. Highly customizable and easy to use. Fits many screen resolutions from small mobile devices to large desktops. Check out the live preview now and see for yourself.
-
-**Download & Preview on [Almsaeed Studio](https://almsaeedstudio.com)**
-
-Looking for Premium Templates?
-------------------------------
-**Almsaeed studio just opened a new premium templates page. Hand picked to insure the best quality and the most affordable prices. Visit https://almsaeedstudio.com/premium for more information.**
-
-
-!["AdminLTE Presentation"] (https://almsaeedstudio.com/AdminLTE2.png "AdminLTE Presentation")
-
-**AdminLTE** has been carefully coded with clear comments in all of its JS, LESS and HTML files. LESS has been used to increase code customizability.
-
-Installation
-------------
-There are multiple ways to install AdminLTE.
-
-####Download:
-
-Download from Github or [visit Almsaeed Studio](https://almsaeedstudio.com) and download the latest release.
-
-####Using The Command Line:
-
-**Github**
-
-- Fork the repository ([here is the guide](https://help.github.com/articles/fork-a-repo/)).
-- Clone to your machine
+## 已实现功能
+1. 2017-01-06 左侧导航栏可拖动 示例：qimeng-index.html
+## 使用说明
+1. 引入AdminTLE所需的css js等
+2. 左侧导航可拖动
+- 2.1在【&lt;aside class="main-sidebar"&gt;】下加入
 ```
-git clone https://github.com/YOUR_USERNAME/AdminLTE.git
+<div class="side-dragbar"></div>
 ```
-
-**Bower**
-
+- 2.2 引入js
 ```
-bower install admin-lte
+<!-- IE9 以下支持 matchMedia  -->
+<!--[if lt IE 10]>
+  <script src="plugins/media-match/media.match.js"></script>
+<![endif]-->
+<script src="plugins/enquire/dist/enquire.js"></script>
+<script src="dist/js/qimeng-admin.js"></script>
 ```
-
-**npm**
-
+## 开发说明
+1. 安装[nodejs](https://nodejs.org/en/download/)
+2. 安装grunt
 ```
-npm install --save admin-lte
+npm install -g grunt-cli
 ```
-
-**Composer**
-
+3. 安装依赖包
 ```
-composer require "almasaeed2010/adminlte=~2.0"
+npm install
 ```
-
-Documentation
--------------
-Visit the [online documentation](https://almsaeedstudio.com/themes/AdminLTE/documentation/index.html) for the most
-updated guide. Information will be added on a weekly basis.
-
-Browser Support
----------------
-- IE 9+
-- Firefox (latest)
-- Chrome (latest)
-- Safari (latest)
-- Opera (latest)
-
-Contribution
-------------
-Contribution are always **welcome and recommended**! Here is how:
-
-- Fork the repository ([here is the guide](https://help.github.com/articles/fork-a-repo/)).
-- Clone to your machine ```git clone https://github.com/YOUR_USERNAME/AdminLTE.git```
-- Make your changes
-- Create a pull request
-
-#### Contribution Requirements:
-
-- When you contribute, you agree to give a non-exclusive license to Almsaeed Studio to use that contribution in any context as we (Almsaeed Studio) see appropriate.
-- If you use content provided by another party, it must be appropriately licensed using an [open source](http://opensource.org/licenses) license.
-- Contributions are only accepted through Github pull requests.
-- Finally, contributed code must work in all supported browsers (see above for browser support).
-
-License
--------
-AdminLTE is an open source project by [Almsaeed Studio](https://almsaeedstudio.com) that is licensed under [MIT](http://opensource.org/licenses/MIT). Almsaeed Studio
-reserves the right to change the license of future releases.
-
-Todo List
----------
-- ~~Light sidebar colors~~ (Done v2.1.0)
-- ~~Right sidebar~~ (Done v2.1.0)
-- ~~Minified main-sidebar~~ (Done v2.1.0)
-- Right to left support
-- ~~Custom pace style~~ (Done v2.3.1)
-
-Legacy Releases
-----------------
-AdminLTE 1.x can be easily upgraded to 2.x using [this guide](https://almsaeedstudio.com/themes/AdminLTE/documentation/index.html#upgrade), but if you intend to keep using AdminLTE 1.x, you can download the latest release from the [releases](https://github.com/almasaeed2010/AdminLTE/releases) section above.
-
-Change log
-----------
-**For the most recent change log, visit the [releases page](https://github.com/almasaeed2010/AdminLTE/releases) or the [changelog file](https://github.com/almasaeed2010/AdminLTE/blob/master/changelog.md).** We will add a detailed release notes to each new release. 
-
-Image Credits
--------------
-[Pixeden](http://www.pixeden.com/psd-web-elements/flat-responsive-showcase-psd)
-
-[Graphicsfuel](http://www.graphicsfuel.com/2013/02/13-high-resolution-blur-backgrounds/)
-
-[Pickaface](http://pickaface.net/)
-
-[Unsplash](https://unsplash.com/)
-
-[Uifaces](http://uifaces.com/)
-
-Donations
----------
-Donations are **greatly appreciated!**
-
-[![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif "AdminLTE Presentation")](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=629XCUSXBHCBC "Donate")
+4. 安装typesecript
+```
+npm install -g typescript
+```
+5. 启动开发环境
+```
+dev.cmd
+```
