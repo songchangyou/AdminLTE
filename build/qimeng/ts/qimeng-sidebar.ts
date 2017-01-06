@@ -154,7 +154,9 @@ namespace qimeng{
             //小屏时,判断显示或者隐藏左侧导航栏
             enquire.register("(max-width:"+this.screenXSMax+"px)", {
                 match : function() {
-                    if($body.hasClass("sidebar-open")){
+                    //右侧内容偏移 大屏转小屏时 如果是小屏是不执行右侧内容偏移，不然会在左侧导航栏宽度不变的情况下，额外占据一部分空间
+                    that.$content.css("margin-left", "0px");
+                    if($body.hasClass("sidebar-open")||$body.hasClass("sidebar-collapse")){
                         that.showSidebar();
                     }else{
                         that.hideSidebar();
@@ -164,11 +166,9 @@ namespace qimeng{
             //宽屏时，如果有sidebar-collapse css类则隐藏导航栏
             enquire.register("(min-width:"+this.screenSM+"px)", {
                 match : function() {
-                    if($body.hasClass("sidebar-collapse")){
-                        that.hideSidebar();
-                    }else{
-                        that.showSidebar();
-                    }
+                    //右侧内容偏移 小屏变大屏时，需设置偏移
+                    that.$content.css("margin-left", that.$sidebar.width()+"px");
+                    that.showSidebar();
                 }
             });
         }
