@@ -1,3 +1,4 @@
+"use strict";
 var qimeng;
 (function (qimeng) {
     /**
@@ -105,7 +106,7 @@ var qimeng;
                 e.preventDefault();
                 that.dragging = true;
                 var main = that.$content;
-                var $ghostbar = $('<div class="dynamic-side-dragbar" id="' + that.draggingId + '"></div>');
+                var $ghostbar = $("<div class=\"dynamic-side-dragbar\" id=\"" + that.draggingId + "\"></div>");
                 $ghostbar.css({
                     height: main.outerHeight(),
                     top: main.offset().top,
@@ -210,4 +211,3 @@ var qimeng;
 $(function () {
     var sidebar = new qimeng.SideBar();
 });
-//# sourceMappingURL=qimeng-sidebar.js.map

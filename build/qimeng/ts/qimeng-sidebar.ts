@@ -73,7 +73,7 @@ namespace qimeng{
             */
             this.$content.on("click",()=>{
                 if($("body").width() <= this.screenXSMax){
-                    var matrix:TransformMatrix = qimeng.Utils.getTransform(this.$sidebar);
+                    let matrix:TransformMatrix = Utils.getTransform(this.$sidebar);
                     if(matrix.x >= 0){
                         this.hideSidebar();
                     }
@@ -86,7 +86,7 @@ namespace qimeng{
          */
         sidebarToggleClickHanlder = () =>{
             window.setTimeout(()=>{
-                    var $body:JQuery = $("body");
+                    let $body:JQuery = $("body");
                     if($body.width() > this.screenXSMax){//宽屏
                         if($body.hasClass("sidebar-collapse")){
                             this.hideSidebar();
@@ -105,12 +105,12 @@ namespace qimeng{
         }
 
         dragHandler(){
-            var that:SideBar = this;
+            let that:SideBar = this;
             that.$dragbar.mousedown(function(e){
                 e.preventDefault();
                 that.dragging = true;
-                var main = that.$content;
-                var $ghostbar = $('<div class="dynamic-side-dragbar" id="'+that.draggingId+'"></div>');
+                let main = that.$content;
+                let $ghostbar = $(`<div class="dynamic-side-dragbar" id="${that.draggingId}"></div>`);
                 $ghostbar.css({
                     height: main.outerHeight(),
                     top: main.offset().top,
@@ -126,8 +126,8 @@ namespace qimeng{
 
             $(document).mouseup(function(e){
                 if (that.dragging) {
-                    var $sideDragbar:JQuery = that.$dragbar;
-                    var pageX:number = e.pageX;
+                    let $sideDragbar:JQuery = that.$dragbar;
+                    let pageX:number = e.pageX;
                     that.$sidebar.width(pageX);
                     $sideDragbar.css("left",(pageX-$sideDragbar.width())+"px");
                     //右侧内容偏移 如果是小屏是不执行右侧内容偏移，不然会在左侧导航栏宽度不变的情况下，额外占据一部分空间
@@ -149,8 +149,8 @@ namespace qimeng{
          * @memberOf SideBar
          */
         initMediaQueryHandler(){
-            var $body:JQuery = $("body");
-            var that:SideBar = this;
+            let $body:JQuery = $("body");
+            let that:SideBar = this;
             //小屏时,判断显示或者隐藏左侧导航栏
             enquire.register("(max-width:"+this.screenXSMax+"px)", {
                 match : function() {
@@ -202,7 +202,7 @@ namespace qimeng{
          * @memberOf SideBar
          */
         private showOrHideSidebar(isShow:boolean){
-            var sidebarX:number = 0;
+            let sidebarX:number = 0;
             if(!isShow){
                 sidebarX = this.$sidebar.width();
                 if(sidebarX > 50){//图标宽度
@@ -211,7 +211,7 @@ namespace qimeng{
                     sidebarX = 0;
                 }
             }
-            qimeng.Utils.translate(this.$sidebar,sidebarX+"px",0);
+            Utils.translate(this.$sidebar,sidebarX+"px",0);
         }
 
         

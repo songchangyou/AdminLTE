@@ -30,7 +30,7 @@ module.exports = {
         "no-mixed-spaces-and-tabs":"warn",
         "no-console":"error",
         "quotes": [
-            "error",
+            "warn",
             "double"
         ],
         "semi": [

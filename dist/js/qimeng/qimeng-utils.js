@@ -1,3 +1,4 @@
+"use strict";
 var qimeng;
 (function (qimeng) {
     var Utils = (function () {
@@ -29,7 +30,7 @@ var qimeng;
             if (ystr && ystr.length > 0) {
                 y = parseInt(ystr, 10);
             }
-            return new TransformMatrix(x, y);
+            return new qimeng.TransformMatrix(x, y);
         };
         /**
          *
@@ -53,4 +54,3 @@ var qimeng;
     }());
     qimeng.Utils = Utils;
 })(qimeng || (qimeng = {}));
-//# sourceMappingURL=qimeng-utils.js.map

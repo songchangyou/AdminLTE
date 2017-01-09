@@ -1,3 +1,4 @@
+"use strict";
 var qimeng;
 (function (qimeng) {
     /**
@@ -25,4 +26,3 @@ var qimeng;
     }());
     qimeng.TransformMatrix = TransformMatrix;
 })(qimeng || (qimeng = {}));
-//# sourceMappingURL=qimeng-transformMatrix.js.map

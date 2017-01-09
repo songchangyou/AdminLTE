@@ -3,8 +3,12 @@
         "module": "commonjs",
         "target": "es5",
         "noImplicitAny": false,
-        "sourceMap": true,
+        "sourceMap": false,
         "declaration": true,
+        //控制台显示错误 高亮
+        "pretty": true,
+        //在每一个生成文件上输出"use strict";指令
+        "alwaysStrict": true,
         "typeRoots": [
             "node_modules/@types"
         ],

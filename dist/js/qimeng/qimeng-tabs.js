@@ -1,1 +1,1 @@
-//# sourceMappingURL=qimeng-tabs.js.map
+"use strict";

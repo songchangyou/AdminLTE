@@ -15,6 +15,14 @@ module.exports = function (grunt) {
         files: ["build/qimeng/less/*.less"],
         tasks: ["less:qimeng_development","less:qimeng_production"]
       },
+      qimeng_ts:{
+        files: ["build/qimeng/ts/*.ts"],
+        tasks: ["copy:qimeng_js"]
+      },
+      qiemng_copy:{
+        files: ["build/qimeng/js/*.js"],
+        tasks: ["copy:qimeng_js"]
+      },
       qimeng_js:{
         files: ["dist/js/qimeng/*.js"],
         tasks: ["concat:qimeng_js","uglify:qimeng"]
@@ -98,7 +106,8 @@ module.exports = function (grunt) {
     uglify: {
       options: {
         mangle: true,
-        preserveComments: 'some'
+        preserveComments: 'some',
+        sourceMap:true
       },
       my_target: {
         files: {
@@ -201,6 +210,14 @@ module.exports = function (grunt) {
       },
     },
 
+    copy: {
+      qimeng_js:{
+        files:[
+          {expand: true,cwd:"build/qimeng/js/", src: ['**'], dest: 'dist/js/qimeng/'}
+        ]
+      }
+    },
+
     // Delete images in build directory
     // After compressing the images in the build/img dir, there is no need
     // for them
@@ -232,6 +249,7 @@ module.exports = function (grunt) {
   //browsersync
   grunt.loadNpmTasks('grunt-browser-sync');
   grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-contrib-copy');
 
   // Linting task
   grunt.registerTask('lint', ['jshint', 'csslint', 'bootlint']);

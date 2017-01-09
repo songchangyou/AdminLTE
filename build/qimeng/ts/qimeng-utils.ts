@@ -11,16 +11,16 @@ namespace qimeng{
          * @memberOf Utils
          */
         static getTransform($obj:JQuery):TransformMatrix{
-            var transformMatrix:string = $obj.css("-webkit-transform") ||
+            let transformMatrix:string = $obj.css("-webkit-transform") ||
             $obj.css("-moz-transform")    ||
             $obj.css("-ms-transform")     ||
             $obj.css("-o-transform")      ||
             $obj.css("transform");
-            var matrix = transformMatrix.replace(/[^0-9\-.,]/g, '').split(',');
-            var xstr:string = matrix[12] || matrix[4];//translate x
-            var ystr:string = matrix[13] || matrix[5];//translate y
-            var x:number = 0;
-            var y:number = 0;
+            let matrix = transformMatrix.replace(/[^0-9\-.,]/g, '').split(',');
+            let xstr:string = matrix[12] || matrix[4];//translate x
+            let ystr:string = matrix[13] || matrix[5];//translate y
+            let x:number = 0;
+            let y:number = 0;
             if(xstr && xstr.length>0){
                 x = parseInt(xstr,10);
             }
@@ -40,7 +40,7 @@ namespace qimeng{
          * @memberOf SideBar
          */
         static translate($obj:JQuery,x:number|string,y:number|string){
-            var css = {
+            let css = {
                 "-webkit-transform": "translate("+x+", "+y+")",
                 "-ms-transform": "translate("+x+", "+y+")",
                 "-o-transform": "translate("+x+", "+y+")",

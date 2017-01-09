@@ -1,5 +1,3 @@
-//预先定义，不然生成的js会报qimeng is not defined
-var qimeng = {};
 /*对AdminTLE的扩展 */
 $(function(){
     /* 加上拖动条后需要改动滚动条的颜色  */
