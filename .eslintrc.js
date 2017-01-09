@@ -36,6 +36,8 @@ module.exports = {
         "semi": [
             "error",
             "always"
-        ]
+        ],
+        "no-extra-semi":"warn",
+        "no-redeclare":"warn"
     }
 };
